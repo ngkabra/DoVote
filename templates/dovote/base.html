@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block content %}
+  {% if user_msg %}
+    <p class="message">Message: {{user_msg}}</p>
+  {% endif %}
+  <p><a href="{% url dovote-topics %}">Home</a></p>
+  {% block dovote_content %}
+  {% endblock %}
+  <p><a href="{% url dovote-topics %}">Home</a></p>
+{% endblock %}
+
+

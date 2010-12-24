@@ -1,0 +1,14 @@
+{% extends "dovote/base.html" %}
+{% block dovote_content %}
+  <h1>Add a new option</h1>
+  <p>This will add a new item to the topic: {{topic.title}}</p>
+
+  <form action="" method="POST">{% csrf_token %}
+    <table>
+    {{iform}}
+    </table>
+    <input type="submit"/>
+  </form>
+{% endblock %}
+
+

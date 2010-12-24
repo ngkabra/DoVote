@@ -1,0 +1,39 @@
+{% extends "dovote/base.html" %}
+
+{% load comments %}
+
+{% block dovote_content %}
+  <h1>{{topic.title}}</h1>
+  {% if topic.description %}<p>{{topic.description}}</p>{% endif %}
+  <ul>
+    {% for option in options %}
+      {% if option.closed %}
+        {% comment %} Disabled items are lighter. 
+                      Hardcoding the styling here is probably a bad idea.
+                      Better to do it using a CSS file? {% endcomment %}
+        <li style="color: #aaa;">{{option.title}}: 
+            {{option.votes}} votes.
+            This option is "closed".
+            {{option.closed_reason}}
+            {% if option.description %}<p>{{option.description}}</p>{% endif %}
+        </li>
+      {% else %}
+        <li>{{option.title}}: 
+            {{option.votes}} votes.
+            <a href="{{option.get_vote_url}}"><strong>Vote</strong></a>
+            {% if option.description %}<p>{{option.description}}</p>{% endif %}
+        </li>
+      {% endif %}
+    {% endfor %}
+  </ul>
+  <p><a href="{% url dovote-add-item topicid=topic.id %}">Click here</a> to add another option to this list.</p>
+
+<h2>Comments</h2>
+{% render_comment_list for topic %}
+
+<h3>Add a new Comment</h3>
+{% render_comment_form for topic %}
+
+{% endblock %}
+
+

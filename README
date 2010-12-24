@@ -1,0 +1,39 @@
+A simplistic system for holding long running polls. 
+
+### How to use:
+
+- Drop this folder as an app in your django project (probably needs Django 1.2 or better)
+- Add this app to your INSTALLED_APPS in settings.py
+- Enable the django comments system: Do steps 1, 2 and 3 from the Django Comments Quick Start Guide at <http://docs.djangoproject.com/en/dev/ref/contrib/comments/>
+- Ensure that you have Django CSRF protections turned on: Add django.middleware.csrf.CsrfViewMiddleware to MIDDLEWARE_CLASSES and add django.core.context_processors.csrf to TEMPLATE_CONTEXT_PROCESSORS
+- Add dovote.urls to your urls.py. e.g.:
+        url('^dovote/', include('dovote.urls')), 
+- These templates will extend "base.html" and will put all their content in "block content". So just ensure that your django project has a base.html with a block called content, and you're 
+
+### Basic Features
+
+This is a very simplistic system that allows for "long-running" polls with the following features:
+
+- Minimal security: anybody can vote with a single click, without requiring a registration or login
+- People can vote for multiple items in a topic
+- Anybody can add new items to an existing/running topic being voted on. (i.e. "options" in a given "poll"). 
+- Anybody can create a new topic (i.e. a new "poll")
+- Topics as well as individual items within a topic can be "closed" or retired. Retired topics/items can no longer be voted upon, but remain there (greyed out) so that people can still see/view them.
+- Comments: people can have comment-discussions on topic pages
+
+### Shortcomings
+
+Note: this was something quickly hacked together while I was sitting in a boring meeting. There are various problems with this, including (but not limited to):
+
+- There are no tests :-(
+- The security is non-existent. It would be trivially easy for someone to vote multiple times.
+- Many other problems possibly exist...
+
+### ToDo
+
+If someone is interested, the following are the TODO items that I can think of:
+
+- Make it pretty. Add a nice CSS stylesheet
+- Ajaxification, to make it easier to use
+- Add some analytics to be able to show things like: most active topics, "new" items, "rising" or "falling" indicators on items.
+- Capture user information (via twitter login, or facebook connect, or something) so that voting history can be maintained. This should be optional.

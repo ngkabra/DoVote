@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block content %}
+  <p>Hi,</p>
+  <p>These are the topics that are currently being voted upon. Click on the topic title to see details:
+  <ul>
+    {% for topic in topic_list %}
+      <li><a href="{{topic.get_absolute_url}}">{{topic.title}}</a>
+        {% if topic.description %}<p>{{topic.description}}</p>{% endif %}</li>
+    {% endfor %}
+  </ul>
+  <p><a href="{% url dovote-add-topic %}">Add a new topic</a></p>
+{% endblock %}
+
+

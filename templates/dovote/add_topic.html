@@ -1,0 +1,11 @@
+{% extends "dovote/base.html" %}
+{% block dovote_content %}
+  <h1>Add a new topic for voting</h1>
+  Add the title and description of the topic you want to vote on. You can then add individual options from the topic page.
+  <form action="" method="POST">{% csrf_token %}
+    <table>
+    {{tform}}
+    </table>
+    <input type="submit"/>
+  </form>
+{% endblock %}
